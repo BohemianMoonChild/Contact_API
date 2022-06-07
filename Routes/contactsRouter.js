@@ -39,5 +39,21 @@ router.post('/', async (req, res) => {
 })
 
 
+//===GET CONTACT BY ID===
+router.get('/:id', async (req, res) => {
+    const id = req.params.id
+
+    try {
+        const contacts = await ContactsModel.findById(id)
+        res.status(200).json(contacts)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({
+            msg: 'Cannot locate Id'
+        })
+    }
+})
+
+
 
 module.exports = router
