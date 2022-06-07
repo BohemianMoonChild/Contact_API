@@ -1,27 +1,29 @@
 //===CREATE BLUEPRINT===
+
 const mongoose = require('mongoose')
+
 //===Create Schema===
 
 const contactsSchema = mongoose.Schema({
-    name: {
+    name: { 
         type: String,
         required: true 
     },
 
-    email: {
+    email: { 
         type: String,
         required: true
     },
 
-    phone: {
+    phone: { 
         type: String,
         required: true 
     },
 
-    contactType: {
+    contactType: { 
         type: String,
         required: true, 
-        default: 'personal'
+        default: 'personal',
 
     },
 

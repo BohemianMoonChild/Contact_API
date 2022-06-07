@@ -9,13 +9,13 @@ const contactsRouter = require('./routes/contactsRouter')
 
 //===IMPORT ROUTER===
 const app = express()
-const PORT = 3000
+const PORT = 9000
 
 //===MIDDLEWARE===
 app.use(express.json())
 
 //===TELL APP USE THIS ROUTER after / SEND MSG BELOW===
-app.use('/contacts', contactsRouter)
+app.use('/Contacts', contactsRouter)
 
 
 //===ROOT ROUTE for the APP===
