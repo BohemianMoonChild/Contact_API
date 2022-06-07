@@ -55,5 +55,21 @@ router.get('/:id', async (req, res) => {
 })
 
 
+//===UPDATE CONTACTS BY ID===
+router.put('/:id', async (req, res) => {
+    const id = req.params.id
+    const newContactData = req.body 
+    try {
+        //*finds the contact by the id#
+        const contacts = await ContactsModel.findByIdAndUpdate(id, newContactData, {new: true})
+        res.status(202).json(contact)
+    } catch (error) {
+        console.log(error)
+        
+    }
+
+})
+
+
 
 module.exports = router
