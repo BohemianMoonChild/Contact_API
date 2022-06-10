@@ -1,8 +1,12 @@
 //===BRING IN EXPRESS===
 const express = require('express')
 const UserModel = require('../Models/usersSchema')
+
 //===PULLS OUT THE TWO FUNCTIONS NEED FROM EXPRESS VALIDATOR===
 const {check, validationResult} = require('express-validator')
+
+//===HASHING ALGORITHM TO SECURE PW===
+const bcrypt = require('bcrypt')
 
 //===CREATE A ROUTER===
 const router = express.Router()
@@ -23,6 +27,12 @@ router.post('/', [
     }
 
     try {
+        
+        const SALT = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(userData.password, SALT)
+        console.log(hashedPassword)
+        userData.password = hashedPassword
+
         const user = await UserModel.create(userData) //===Creating User
         res.status(201).json(user)
     } catch (error) {
