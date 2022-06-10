@@ -1,8 +1,9 @@
-// ===IMPORT EXPRESS=== 
+// ===IMPORT=== 
 const express = require('express')
-
-//===INITIALIZE .ENV CONNECT TO MONGODB
 require('dotenv').config()
+const morgan = require('morgan')
+const helmet = require('helmet')
+
 
 const mongoConfig = require('./config/mongoConfig')
 const contactsRouter = require('./routes/contactsRouter')
@@ -14,6 +15,8 @@ const PORT = 9000
 
 //===MIDDLEWARE===
 app.use(express.json())
+app.use(morgan('dev'))
+app.use(helmet())
 
 //===TELL APP USE THIS ROUTER after / SEND MSG BELOW===
 app.use('/Contacts', contactsRouter)
@@ -22,7 +25,7 @@ app.use('/users', usersRouter)
 
 //===ROOT ROUTE for the APP===
 app.get('/', (req, res) => {
-    res.status(200).json("Welcome to my API Contacts!")
+    res.status(201).json("Welcome to my API Contacts!")
 })
 
 

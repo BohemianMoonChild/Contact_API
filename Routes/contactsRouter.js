@@ -62,7 +62,7 @@ router.put('/:id', async (req, res) => {
     try {
         //*finds the contact by the id#
         const contacts = await ContactsModel.findByIdAndUpdate(id, newContactData, {new: true})
-        res.status(204).json(contacts)
+        res.status(201).json(contacts)
     } catch (error) {
         console.log(error)
         
