@@ -45,7 +45,7 @@ router.get('/:id', async (req, res) => {
 
     try {
         const contacts = await ContactsModel.findById(id)
-        res.status(200).json(contacts)
+        res.status(204).json(contacts)
     } catch (error) {
         console.error(error)
         res.status(400).json({
@@ -62,13 +62,28 @@ router.put('/:id', async (req, res) => {
     try {
         //*finds the contact by the id#
         const contacts = await ContactsModel.findByIdAndUpdate(id, newContactData, {new: true})
-        res.status(202).json(contact)
+        res.status(204).json(contacts)
     } catch (error) {
         console.log(error)
         
     }
 
 })
+
+
+//===!DELETE A CONTACT===
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id
+    
+    try {
+        const contacts = await ContactsModel.findByIdAndDelete(id)
+        res.status(202).json({msg: 'Contact was deleted!'})
+    } catch (error) {
+        console.log(error);
+        
+    }
+})
+
 
 
 
